@@ -34,7 +34,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
         android:ems="10"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:textAlignment="center" />
 
     <EditText
         android:id="@+id/etBil_2"
@@ -44,7 +45,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
         android:ems="10"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:textAlignment="center" />
 
     <Button
         android:id="@+id/btnJumlah"
