@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     List<Barang> databarang = new ArrayList<Barang>();
     BarangAdapter adapter;
     RecyclerView rcvBarang;
+
+    String idbarang;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +74,13 @@ public class MainActivity extends AppCompatActivity {
                     pesan("insert gagal");
                 }
             }else {
-                pesan("update");
+                String sql = " UPDATE tblbarang\n" + "SET barang = '"+barang+"', stok = "+stok+", harga = "+harga+"\n" + "WHERE idbarang = "+idbarang+"; ";
+                if (db.runSQL(sql)){
+                    pesan("data sudah di ubah");
+                    selectData();
+                }else {
+                    pesan("data tidak bisa di ubah");
+                }
             }
         }
 
@@ -107,6 +115,31 @@ public class MainActivity extends AppCompatActivity {
             pesan("Data Kosong");
         }
     }
+
+    public  void deleteData(String id){
+        String idbarang = id;
+        String sql = "DELETE FROM tblbarang WHERE idbarang = "+idbarang+";";
+        if (db.runSQL(sql)){
+            pesan("Data Sudah dihapus");
+        }else {
+            pesan("Data tidak dihapus");
+        }
+    }
+
+    public  void  selectUpdate(String id){
+        idbarang = id;
+        String sql = "SELECT * FROM tblbarang WHERE idbarang="+id+";";
+        Cursor cursor =db.select(sql);
+        cursor.moveToNext();
+
+        etBarang.setText(cursor.getString(cursor.getColumnIndex("barang")));
+        etStok.setText(cursor.getString(cursor.getColumnIndex("stok")));
+        etHarga.setText(cursor.getString(cursor.getColumnIndex("harga")));
+
+        tvPilihan.setText("update");
+
+    }
+
 }
 
 
