@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Laravel Api</string>
+    <string name="add_student">Tambah Mahasiswa</string>
+</resources>
